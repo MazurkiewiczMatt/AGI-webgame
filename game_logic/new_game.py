@@ -84,7 +84,7 @@ def create_save_file(username, org_type, archetype):
         "assets": {},
         "employees": {},
         "datasets": {},
-        "time_in_game": 0,
+        "turn": 0,
     }
 
     # Fetch dictionaries from org_types and archetypes
