@@ -42,7 +42,7 @@ def update_turn():
     updated_save['world_state']['USD_to_BTC'] = int(updated_save['world_state']['USD_to_BTC'] * (1 + btc_change_factor))
 
     log_entry = (f"**Turn {updated_save['turn']}**  \n"
-                 f"USD Change: **{usd_change}** "
+                 f"Cashflow: $**{usd_change:,.2f}** "
                  f"(Funding: {breakdown['funding']}, Employees: {breakdown['employees']}, Compute: {breakdown['compute']}, Other: {breakdown['other']})")
 
     if abs(btc_change_factor) > 0.04:

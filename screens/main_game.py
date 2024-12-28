@@ -20,6 +20,22 @@ def main_game():
         datasets_expander()
         assets_expander()
 
+    with col2:
+        with st.container(border=True):
+            st.markdown("##### Ongoing projects:")
+            if st.session_state.save_file['tasks']:
+                st.write("here display the task")
+            else:
+                st.write("No projects.")
+        with st.container(border=True):
+            st.markdown("##### New project:")
+            if st.button("Develop a learning algorithm", use_container_width=True):
+                st.session_state.router = "learning_algo"
+                st.rerun()
+            if st.button("Train an AI model", use_container_width=True):
+                st.session_state.router = "learning_algo"
+                st.rerun()
+
 def header():
     with st.container():
         col1, col2, col3 = st.columns([4, 1, 1])

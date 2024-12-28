@@ -20,9 +20,15 @@ def main():
         main_game()
     else:
         # Fallback
-        st.write("Page not found. Returning to main menu.")
-        st.session_state.router = "main_menu"
-        st.rerun()
+        st.warning("Page not found.")
+        if "save_file" not in st.session_state or st.session_state.save_file is None:
+            if st.button("Back to main menu"):
+                st.session_state.router = "main_menu"
+                st.rerun()
+        else:
+            if st.button("Back to game"):
+                st.session_state.router = "main_game"
+                st.rerun()
 
 if __name__ == "__main__":
     main()

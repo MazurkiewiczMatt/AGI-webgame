@@ -137,7 +137,8 @@ def create_save_file(username, org_type, archetype):
         "world_state": {
             "USD_to_BTC": 100_000.0,
             "USD_per_PFLOPs": 2_000.0,
-        }
+        },
+        "tasks": {},
     }
 
     # Fetch dictionaries from org_types and archetypes
