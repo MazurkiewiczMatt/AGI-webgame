@@ -3,30 +3,46 @@ def create_save_file(username, org_type, archetype):
         "University": {
             "USD": 2_000_000,
             "compute": {
-                "University supercomputer": {"PFLOPs": 20}
+                "university_supercomputer": {
+                    "name": "University Supercomputer",
+                    "description": "Handles extensive calculations for research",
+                    "type": "compute",
+                    "parameters": {"PFLOPs": 20}
+                }
             },
             "assets": {
-                "University funding": {
+                "university_funding": {
+                    "name": "University Funding",
+                    "description": "Financial support for the institution",
                     "type": "funding",
-                    "price_per_turn": -8_000_000
+                    "parameters": {"price_per_turn": -8_000_000}
                 }
             },
             "employees": {
-                "Grad students": {
-                    "expertise": 100,
-                    "price_per_turn": 125_000
+                "grad_students": {
+                    "name": "Grad Students",
+                    "description": "Talented researchers working on projects",
+                    "type": "researcher",
+                    "parameters": {"expertise": 100, "price_per_turn": 125_000}
                 }
             }
         },
         "Private venture": {
             "USD": 100_000_000,
             "compute": {
-                "H100 cluster": {"PFLOPs": 20}
+                "h100_cluster": {
+                    "name": "H100 Cluster",
+                    "description": "High-performance computing setup",
+                    "type": "compute",
+                    "parameters": {"PFLOPs": 20}
+                }
             },
             "employees": {
-                "Early employees": {
-                    "expertise": 50,
-                    "price_per_turn": 125_000
+                "early_employees": {
+                    "name": "Early Employees",
+                    "description": "Initial team members with diverse skills",
+                    "type": "researcher",
+                    "parameters": {"expertise": 50, "price_per_turn": 125_000}
                 }
             }
         },
@@ -34,12 +50,19 @@ def create_save_file(username, org_type, archetype):
             "USD": 100_000,
             "BTC": 100,
             "compute": {
-                "Hijacked crypto miners": {"PFLOPs": 20}
+                "hijacked_crypto_miners": {
+                    "name": "Hijacked Crypto Miners",
+                    "description": "Compromised systems for computational tasks",
+                    "type": "compute",
+                    "parameters": {"PFLOPs": 20}
+                }
             },
             "assets": {
-                "DarkNet contacts": {
+                "darknet_contacts": {
+                    "name": "DarkNet Contacts",
+                    "description": "Access to illicit marketplaces and resources",
                     "type": "influence",
-                    "description": "More items available on black market."
+                    "parameters": {"effect": "market_access"}
                 }
             }
         }
@@ -48,27 +71,52 @@ def create_save_file(username, org_type, archetype):
     archetypes = {
         "The Maker": {
             "datasets": {
-                "DIY robotics dataset": {"robotics": 20}
+                "diy_robotics_dataset": {
+                    "name": "DIY Robotics Dataset",
+                    "description": "Comprehensive guide for robotics enthusiasts",
+                    "type": "dataset",
+                    "parameters": {"robotics": 20}
+                }
             }
         },
         "The ASCII Artist": {
             "datasets": {
-                "Starting text dataset": {"text": 20}
+                "starting_text_dataset": {
+                    "name": "Starting Text Dataset",
+                    "description": "Initial corpus for text-based models",
+                    "type": "dataset",
+                    "parameters": {"text": 20}
+                }
             }
         },
         "The Producer": {
             "datasets": {
-                "Starting video dataset": {"video": 20}
+                "starting_video_dataset": {
+                    "name": "Starting Video Dataset",
+                    "description": "Collection of videos for multimedia training",
+                    "type": "dataset",
+                    "parameters": {"video": 20}
+                }
             }
         },
         "The Superuser": {
             "compute": {
-                "Extra starting compute": {"PFLOPs": 20}
+                "extra_starting_compute": {
+                    "name": "Extra Starting Compute",
+                    "description": "Boost in initial computational power",
+                    "type": "compute",
+                    "parameters": {"PFLOPs": 20}
+                }
             }
         },
         "The Hedonist": {
             "datasets": {
-                "Adult movies collection": {"video": 40, "tags": ["porn"]}
+                "adult_movies_collection": {
+                    "name": "Adult Movies Collection",
+                    "description": "Extensive collection of mature content",
+                    "type": "dataset",
+                    "parameters": {"video": 40, "tags": ["porn"]}
+                }
             }
         }
     }

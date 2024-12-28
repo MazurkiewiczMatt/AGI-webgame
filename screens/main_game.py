@@ -1,6 +1,8 @@
 import streamlit as st
 import json
 
+from .inventory import employees_expander,compute_expander,assets_expander
+
 def main_game():
     header()
     overview()
@@ -40,29 +42,3 @@ def overview():
                 f"**BTC:** {st.session_state.save_file.get('BTC', 0)}"
             )
 
-def employees_expander():
-    with st.expander("Employees"):
-        employees = st.session_state.save_file.get('employees', {})
-        if employees:
-            for employee, details in employees.items():
-                st.write(f"**{employee}:** Expertise: {details['expertise']}, Cost per turn: {details['price_per_turn']}")
-        else:
-            st.write("No employees yet.")
-
-def assets_expander():
-    with st.expander("Assets"):
-        assets = st.session_state.save_file.get('assets', {})
-        if assets:
-            for asset, details in assets.items():
-                st.write(f"**{asset}:** {details.get('type', 'Unknown type')} - {details.get('description', 'No description')} {details.get('price_per_turn', '')}")
-        else:
-            st.write("No assets yet.")
-
-def compute_expander():
-    with st.expander("Compute"):
-        compute = st.session_state.save_file.get('compute', {})
-        if compute:
-            for resource, details in compute.items():
-                st.write(f"**{resource}:** PFLOPs: {details['PFLOPs']}")
-        else:
-            st.write("No compute resources yet.")
