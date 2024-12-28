@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 
-from .inventory import employees_expander,compute_expander,assets_expander
+from .inventory import employees_expander,compute_expander,assets_expander, datasets_expander
 
 def main_game():
     header()
@@ -10,6 +10,7 @@ def main_game():
     with col1:
         compute_expander()
         employees_expander()
+        datasets_expander()
         assets_expander()
 
 def header():

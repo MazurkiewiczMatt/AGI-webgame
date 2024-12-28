@@ -73,7 +73,7 @@ def create_save_file(username, org_type, archetype):
             "datasets": {
                 "diy_robotics_dataset": {
                     "name": "DIY Robotics Dataset",
-                    "description": "Comprehensive guide for robotics enthusiasts",
+                    "description": "Initial dataset for robotics models",
                     "type": "dataset",
                     "parameters": {"robotics": 20}
                 }
