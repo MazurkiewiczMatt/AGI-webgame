@@ -133,6 +133,7 @@ def create_save_file(username, org_type, archetype):
         "employees": {},
         "datasets": {},
         "turn": 0,
+        "update_log": {},  # key = turn number; value = update message (multiline markdown string)
     }
 
     # Fetch dictionaries from org_types and archetypes

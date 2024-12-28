@@ -49,4 +49,7 @@ def overview():
             st.write(
                 f"**BTC:** {st.session_state.save_file.get('BTC', 0)}"
             )
+        if turn > 0:
+            with st.container(border=True):
+                st.markdown(st.session_state.save_file.get('update_log')[turn])
 
