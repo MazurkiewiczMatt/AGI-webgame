@@ -126,14 +126,18 @@ def create_save_file(username, org_type, archetype):
         "username": username,
         "org_type": org_type,
         "archetype": archetype,
-        "USD": 0,
-        "BTC": 0,
+        "USD": 0.0,
+        "BTC": 0.0,
         "compute": {},
         "assets": {},
         "employees": {},
         "datasets": {},
         "turn": 0,
         "update_log": {},  # key = turn number; value = update message (multiline markdown string)
+        "world_state": {
+            "USD_to_BTC": 100_000.0,
+            "USD_per_PFLOPs": 2_000.0,
+        }
     }
 
     # Fetch dictionaries from org_types and archetypes

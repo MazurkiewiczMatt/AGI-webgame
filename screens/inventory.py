@@ -1,7 +1,35 @@
 import streamlit as st
 
-from game_logic import handle_item_removal
+from game_logic import handle_item_removal, convert_currency
 
+def exchange_gui():
+    usd_to_btc = st.session_state.save_file['world_state'].get('USD_to_BTC', 100_000)
+    btc_to_usd = 1 / usd_to_btc if usd_to_btc > 0 else 0
+    with st.expander(f"USD to BTC Exchange Rate: ${usd_to_btc:,}"):
+        st.write(f"**1 BTC = ${usd_to_btc:,}**")
+        st.write(f"**1 USD = {btc_to_usd:.8f} BTC**")
+
+        max_usd = float(st.session_state.save_file.get('USD', 0))
+        max_btc = float(st.session_state.save_file.get('BTC', 0))
+
+        exchange_direction = st.radio("Convert:", ["USD to BTC", "BTC to USD"], key="exchange_direction", horizontal=True)
+
+        if exchange_direction == "USD to BTC":
+            if max_usd > 0:
+                exchange_amount = st.slider("Amount to exchange (USD):", min_value=0.0, max_value=max_usd, step=1.0, key="exchange_amount_usd")
+                if max_usd >= exchange_amount > 0:
+                    if st.button("Exchange to BTC"):
+                        convert_currency(exchange_amount, "USD", "BTC")
+            else:
+                st.warning("You don't have any USD.")
+        elif exchange_direction == "BTC to USD":
+            if max_btc > 0:
+                exchange_amount = st.slider("Amount to exchange (BTC):", min_value=0.0, max_value=max_btc, step=0.000001, key="exchange_amount_btc")
+                if max_btc >= exchange_amount > 0:
+                    if st.button("Exchange to USD"):
+                        convert_currency(exchange_amount, "BTC", "USD")
+            else:
+                st.warning("You don't have any BTC.")
 
 def display_employee(name, details, button_text=None, button_action=None):
     with st.container(border=True):
