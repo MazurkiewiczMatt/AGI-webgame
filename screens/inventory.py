@@ -1,5 +1,7 @@
 import streamlit as st
 
+from game_logic import handle_item_removal
+
 
 def display_employee(name, details, button_text=None, button_action=None):
     with st.container(border=True):
@@ -39,7 +41,7 @@ def display_asset(name, details, button_text=None, button_action=None):
 
 def display_compute(name, details, button_text=None, button_action=None):
     with st.container(border=True):
-        col1, col2 = st.columns([3, 1])
+        col1, col2 = st.columns([3, 2])
         with col1:
             st.write(f"**{details.get('name', name)}**")
         with col2:
@@ -87,13 +89,6 @@ def display_dataset(name, details, button_text=None, button_action=None):
 
         st.markdown(markdown_text)
 
-
-def handle_item_removal(category, name):
-    if category in st.session_state.save_file:
-        updated_category = st.session_state.save_file[category].copy()
-        updated_category.pop(name, None)
-        st.session_state.save_file[category] = updated_category
-        st.rerun()
 
 
 def employees_expander():

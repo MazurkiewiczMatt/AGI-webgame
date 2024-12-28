@@ -2,6 +2,7 @@ import streamlit as st
 import json
 
 from .inventory import employees_expander,compute_expander,assets_expander, datasets_expander
+from game_logic import update_turn
 
 def main_game():
     header()
@@ -33,12 +34,18 @@ def header():
 
 def overview():
     with st.container(border=True):
-        col1, col2, col3 = st.columns([2, 1, 1])
+        col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+        with col1:
+            turn = st.session_state.save_file['turn']
+            st.write(f"Y{1+turn//4}Q{1+turn%4} (Turn {1+turn})")
         with col2:
+            if st.button("Next turn"):
+                update_turn()
+        with col3:
             st.write(
                 f"**USD:** {st.session_state.save_file.get('USD', 0)}"
             )
-        with col3:
+        with col4:
             st.write(
                 f"**BTC:** {st.session_state.save_file.get('BTC', 0)}"
             )

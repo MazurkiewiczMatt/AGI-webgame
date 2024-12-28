@@ -13,7 +13,7 @@ def create_save_file(username, org_type, archetype):
             "assets": {
                 "university_funding": {
                     "name": "University Funding",
-                    "description": "Financial support for the institution",
+                    "description": "Financial support for the organization",
                     "type": "funding",
                     "parameters": {"price_per_turn": -300_000}
                 }
@@ -21,7 +21,7 @@ def create_save_file(username, org_type, archetype):
             "employees": {
                 "grad_students": {
                     "name": "Grad Students",
-                    "description": "Talented researchers working on projects",
+                    "description": "Talented researchers working on ML projects",
                     "type": "researcher",
                     "parameters": {"expertise": 100, "price_per_turn": 125_000}
                 }
@@ -40,7 +40,7 @@ def create_save_file(username, org_type, archetype):
             "employees": {
                 "early_employees": {
                     "name": "Early Employees",
-                    "description": "Initial team members with diverse skills",
+                    "description": "Initial ML researchers",
                     "type": "researcher",
                     "parameters": {"expertise": 50, "price_per_turn": 125_000}
                 }
@@ -83,7 +83,7 @@ def create_save_file(username, org_type, archetype):
             "datasets": {
                 "starting_text_dataset": {
                     "name": "Starting Text Dataset",
-                    "description": "Initial corpus for text-based models",
+                    "description": "Initial corpus for training LLMs",
                     "type": "dataset",
                     "parameters": {"text": 20}
                 }
