@@ -1,7 +1,7 @@
 def create_save_file(username, org_type, archetype):
     org_types = {
         "University": {
-            "USD": 2_000_000,
+            "USD": 500_000,
             "compute": {
                 "university_supercomputer": {
                     "name": "University Supercomputer",
@@ -15,7 +15,7 @@ def create_save_file(username, org_type, archetype):
                     "name": "University Funding",
                     "description": "Financial support for the institution",
                     "type": "funding",
-                    "parameters": {"price_per_turn": -8_000_000}
+                    "parameters": {"price_per_turn": -300_000}
                 }
             },
             "employees": {
@@ -28,7 +28,7 @@ def create_save_file(username, org_type, archetype):
             }
         },
         "Private venture": {
-            "USD": 100_000_000,
+            "USD": 3_000_000,
             "compute": {
                 "h100_cluster": {
                     "name": "H100 Cluster",
@@ -47,8 +47,8 @@ def create_save_file(username, org_type, archetype):
             }
         },
         "DarkWeb cell": {
-            "USD": 100_000,
-            "BTC": 100,
+            "USD": 10_000,
+            "BTC": 20,
             "compute": {
                 "hijacked_crypto_miners": {
                     "name": "Hijacked Crypto Miners",
