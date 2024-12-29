@@ -38,15 +38,22 @@ def display_employee(name, details, button_text=None, button_action=None):
             st.write(f"**{details.get('name', name)}**")
         with col2:
             if button_text and button_action:
-                if st.button(button_text, key=f"employee_{name}"):
-                    button_action('employees', name)
+                if not ('allocated' in details and details['allocated'] is not None):
+                    if st.button(button_text, key=f"employee_{name}"):
+                        button_action('employees', name)
+                else:
+                    task = details['allocated']
+                    st.write(f"Working on: {st.session_state.save_file['tasks'][task]['name']}")
+
         parameters = details.get('parameters', {})
         expertise = parameters.get('expertise', 'N/A')
         price_per_turn = parameters.get('price_per_turn', None)
+
         markdown_text = f"*{details.get('description', 'No description available.')}*"
         if price_per_turn:
             markdown_text += f"  \nPrice per Turn: {price_per_turn}"
         markdown_text += f"  \nExpertise: {expertise}"
+
         st.markdown(markdown_text)
 
 

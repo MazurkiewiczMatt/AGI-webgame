@@ -24,7 +24,9 @@ def main_game():
         with st.container(border=True):
             st.markdown("##### Ongoing projects:")
             if st.session_state.save_file['tasks']:
-                st.write("here display the task")
+                for task_id, task in st.session_state.save_file['tasks'].items():
+                    if task['type'] == "learning_algo":
+                        st.write(f"Developing a learning algorithm **{task['name']}** (end in {task['end_turn'] - st.session_state.save_file['turn']} turns)")
             else:
                 st.write("No projects.")
         with st.container(border=True):

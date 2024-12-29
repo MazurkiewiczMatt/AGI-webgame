@@ -1,6 +1,6 @@
 import streamlit as st
 
-from screens import main_menu, new_game, main_game
+from screens import main_menu, new_game, main_game, learning_algo
 
 if "router" not in st.session_state:
     st.session_state.router = "main_menu"
@@ -18,6 +18,8 @@ def main():
         new_game()
     elif st.session_state.router == "main_game":
         main_game()
+    elif st.session_state.router == "learning_algo":
+        learning_algo()
     else:
         # Fallback
         st.warning("Page not found.")
