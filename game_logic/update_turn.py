@@ -50,16 +50,16 @@ def update_turn():
         log_entry += f"  \nBitcoin exchange rate changed by {percentage_change}%"
 
     finished_tasks = []
-    if st.session_state.save_file['tasks']:
-        for task_id, task in st.session_state.save_file['tasks'].items():
-            if task['end_turn'] == st.session_state.save_file['turn']+1:
+    if updated_save['tasks']:
+        for task_id, task in updated_save['tasks'].items():
+            if task['end_turn'] == updated_save['turn']:
                 if task['type'] == "learning_algo":
                     name = task['name']
                     modalities = task['modalities']
                     multiplier = task['total_expertise'] * random.randint(1,6-modalities)
                     updated_save['assets'][task_id] = {
                         'name': name,
-                        'description': f"Learning algorithm with {multiplier}x multiplier and {modalities} modalities.",
+                        'description': f"Learning algorithm developed at {updated_save['username']}.",
                         'type': 'learning_algo',
                         'parameters': {
                             'multiplier': multiplier,
@@ -73,8 +73,8 @@ def update_turn():
 
                 finished_tasks.append(task_id)
 
-    for finished_task in finished_tasks:
-        updated_save['tasks'].pop(finished_task, None)
+        for finished_task in finished_tasks:
+            updated_save['tasks'].pop(finished_task, None)
 
 
     updated_save['update_log'][updated_save['turn']] = log_entry

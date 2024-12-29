@@ -4,6 +4,8 @@ from game_logic import commence_development
 
 
 def learning_algo():
+    st.markdown(f"### Develop a new learning algorithm")
+    st.write("Includes the optimizer, can be used to train AI models.")
     save_file = st.session_state.save_file
     employees = save_file.get('employees', {})
 
@@ -64,6 +66,8 @@ def learning_algo():
     if total_expertise > 0 and algo_name.strip() != "":
         if st.button("Commence Development"):
             commence_development(algo_name, modalities, employees, st.session_state.selected, save_file)
+    else:
+        st.warning("Selection incomplete.")
 
     if st.button("Back to game"):
         st.session_state.router = "main_game"

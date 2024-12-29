@@ -7,7 +7,7 @@ def exchange_gui():
     btc_to_usd = 1 / usd_to_btc if usd_to_btc > 0 else 0
     with st.expander(f"USD to BTC Exchange Rate: ${usd_to_btc:,}"):
         st.write(f"**1 BTC = ${usd_to_btc:,}**")
-        st.write(f"**1 USD = {btc_to_usd:.8f} BTC**")
+        st.write(f"**${10000:,} = {10000*btc_to_usd:.8f} BTC**")
 
         max_usd = float(st.session_state.save_file.get('USD', 0))
         max_btc = float(st.session_state.save_file.get('BTC', 0))
@@ -67,10 +67,15 @@ def display_asset(name, details, button_text=None, button_action=None):
                 if st.button(button_text, key=f"asset_{name}"):
                     button_action('assets', name)
         parameters = details.get('parameters', {})
-        price_per_turn = parameters.get('price_per_turn', None)
         markdown_text = f"*{details.get('description', 'No description available.')}*"
+        price_per_turn = parameters.get('price_per_turn', None)
         if price_per_turn:
             markdown_text += f"  \nPrice per Turn: {price_per_turn}"
+        if details.get('type', None) == "learning_algo":
+            multiplier = parameters.get('multiplier', None)
+            markdown_text += f"  \nMultiplier: {multiplier}x"
+            modalities = parameters.get('modalities', None)
+            markdown_text += f"  \nModalities: {modalities}"
         st.markdown(markdown_text)
 
 
