@@ -62,8 +62,7 @@ def learning_algo():
         else:
             st.write("No employees available.")
 
-    # Commence development button only appears if total expertise > 0
-    if total_expertise > 0 and algo_name.strip() != "":
+    if total_expertise > 0 and algo_name.strip() != "" and modalities is not None:
         if st.button("Commence Development"):
             commence_development(algo_name, modalities, employees, st.session_state.selected, save_file)
     else:

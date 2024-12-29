@@ -128,6 +128,7 @@ def create_save_file(username, org_type, archetype):
         "archetype": archetype,
         "USD": 0.0,
         "BTC": 0.0,
+        "AI_expertise": 5,
         "compute": {},
         "assets": {},
         "employees": {},
@@ -139,6 +140,8 @@ def create_save_file(username, org_type, archetype):
             "USD_per_PFLOPs": 2_000.0,
         },
         "tasks": {},
+        "models": {},
+        "deployed_model": None,
     }
 
     # Fetch dictionaries from org_types and archetypes

@@ -33,6 +33,6 @@ def commence_development(algo_name, modalities, employees, selected, save_file):
             save_file['employees'][employee]['allocated'] = task_id
 
     # Reset selection and navigate back to the main game
-    st.session_state.selected = {employee: False for employee in employees}
+    del st.session_state['selected']
     st.session_state.router = "main_game"
     st.rerun()

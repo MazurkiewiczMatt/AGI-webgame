@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 
-from .inventory import employees_expander, compute_expander, assets_expander, datasets_expander, exchange_gui
+from .inventory import employees_expander, compute_expander, assets_expander, datasets_expander, exchange_gui, models_expander
 from game_logic import update_turn
 
 def main_game():
@@ -10,11 +10,15 @@ def main_game():
     col1, col2 = st.columns([2, 1])
     with col1:
         with st.container(border=True):
+            AI_expertise = st.session_state.save_file.get('AI_expertise', None)
+            st.markdown(f"**Organizational AI expertise:** {AI_expertise:,}", help="Increase by letting employed researchers be idle, not allocating them to projects")
+        with st.container(border=True):
             usd_per_pflops = st.session_state.save_file['world_state'].get('USD_per_PFLOPs', 2_000)
             st.write(f"**Electricity Cost (USD per PFLOPs):** ${usd_per_pflops:,}")
 
         exchange_gui()
 
+        models_expander()
         compute_expander()
         employees_expander()
         datasets_expander()
@@ -25,17 +29,26 @@ def main_game():
             st.markdown("##### Ongoing projects:")
             if st.session_state.save_file['tasks']:
                 for task_id, task in st.session_state.save_file['tasks'].items():
+                    remaining_turns = task['end_turn'] - st.session_state.save_file['turn']
+
                     if task['type'] == "learning_algo":
-                        st.write(f"Developing a learning algorithm **{task['name']}** (end in {task['end_turn'] - st.session_state.save_file['turn']} turns)")
+                        st.write(
+                            f"Developing learning algorithm **{task['name']}** (ends in {remaining_turns} turns)"
+                        )
+
+                    elif task['type'] == "training":
+
+                        st.write(
+                            f"Training AI Model **{task['name']}** (ends in {remaining_turns} turns)")
             else:
                 st.write("No projects.")
         with st.container(border=True):
-            st.markdown("##### New project:")
+            st.markdown("##### New project:", help="Projects are strategic actions completed over one or more turns.")
             if st.button("Develop a learning algorithm", use_container_width=True):
                 st.session_state.router = "learning_algo"
                 st.rerun()
             if st.button("Train an AI model", use_container_width=True):
-                st.session_state.router = "learning_algo"
+                st.session_state.router = "train_model"
                 st.rerun()
 
 def header():

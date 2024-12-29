@@ -86,8 +86,13 @@ def display_compute(name, details, button_text=None, button_action=None):
             st.write(f"**{details.get('name', name)}**")
         with col2:
             if button_text and button_action:
-                if st.button(button_text, key=f"compute_{name}"):
-                    button_action('compute', name)
+                if not ('allocated' in details and details['allocated'] is not None):
+                    if st.button(button_text, key=f"compute_{name}"):
+                        button_action('compute', name)
+                else:
+                    task = details['allocated']
+                    st.write(f"Working on: {st.session_state.save_file['tasks'][task]['name']}")
+
         parameters = details.get('parameters', {})
         pflops = parameters.get('PFLOPs', 'N/A')
         price_per_turn = parameters.get('price_per_turn', None)
@@ -169,3 +174,29 @@ def datasets_expander():
                 display_dataset(dataset, details, "Delete", handle_item_removal)
         else:
             st.write("No datasets yet.")
+
+def models_expander():
+    with st.expander("Models"):
+        models = st.session_state.save_file.get('models', {})
+        if models:
+            for model, details in list(models.items()):
+                with st.container(border=True):
+                    info = f"#### {details['name']}"
+                    if model == st.session_state.save_file["deployed_model"]:
+                        info += "  \n(DEPLOYED)"
+                    info += "  \nCapabilities: "
+                    for capability in details['capabilities']:
+                        info += f"{capability}; "
+                    st.markdown(info)
+                    if st.button("Delete", key=f"delete_model_{model}"):
+                        handle_item_removal("models", model)
+                    if model == st.session_state.save_file["deployed_model"]:
+                        if st.button("Undeploy"):
+                            st.session_state.save_file["deployed_model"] = None
+                            st.rerun()
+                    else:
+                        if st.button("Deploy", key=f"deploy_model_{model}"):
+                            st.session_state.save_file["deployed_model"] = model
+                            st.rerun()
+        else:
+            st.write("No models yet.")
